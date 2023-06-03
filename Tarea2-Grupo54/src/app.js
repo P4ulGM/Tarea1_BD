@@ -15,6 +15,8 @@ app.get('/users/:id', UsersController.getUserById)
 app.post('/users', UsersController.createUser)
 app.get('/users/:id/posts', UsersController.usersPosts)
 
+// CRUD Personajes
+
 
 //==========================================================//
 app.get('/', (req, res) => {
