@@ -1,5 +1,6 @@
 import express from 'express';
 import UsersController from './controllers/UsersController.js';
+import PersonajesController from './controllers/PersonajesController.js';
 import morgan from 'morgan';
 
 const ENV = process.env;
@@ -16,6 +17,9 @@ app.post('/users', UsersController.createUser)
 app.get('/users/:id/posts', UsersController.usersPosts)
 
 // CRUD Personajes
+
+app.get('/api/personajes', PersonajesController.GetPersonajes)
+app.get('/api/personajes/:id', PersonajesController.GetPersonajesPorId) 
 
 
 //==========================================================//
