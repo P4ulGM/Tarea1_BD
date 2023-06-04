@@ -4,6 +4,7 @@ import PersonajesController from './controllers/PersonajesController.js';
 import KartsController from './controllers/KartsController.js';
 import TrabajosController from './controllers/TrabajosController.js';
 import ReinosController from './controllers/ReinosController.js';
+import DefensasController from './controllers/DefensasController.js';
 import morgan from 'morgan';
 
 const ENV = process.env;
@@ -47,6 +48,14 @@ app.post('/reinos', ReinosController.createReino)
 app.put('/reinos/:id', ReinosController.updateReino)
 app.delete('/reinos/:id', ReinosController.deleteReino)
 //------------------------
+
+//----------- CRUD Defensas -----------------
+app.get('/api/defensas', DefensasController.getDefensas)
+app.get('/api/defensas/:id', DefensasController.getDefensaById)
+app.post('/api/defensas', DefensasController.createDefensa)
+app.put('/api/defensas/:id', DefensasController.updateDefensa)
+app.delete('/api/defensas/:id', DefensasController.deleteDefensa)
+//-----------------------------------------------------
 
 //==========================================================//
 app.get('/', (req, res) => {
