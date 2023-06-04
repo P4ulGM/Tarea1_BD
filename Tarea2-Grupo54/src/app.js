@@ -26,27 +26,27 @@ app.get('/api/personajes', PersonajesController.GetPersonajes)
 app.get('/api/personajes/:id', PersonajesController.GetPersonajesPorId) 
 
 //----------- CRUD Karts -------------------------
-app.get('/karts', KartsController.getKarts)
-app.get('/karts/:id', KartsController.getKartById)
-app.post('/karts', KartsController.createKarts)
-app.put('/karts/:id', KartsController.updateKart)
-app.delete('/karts/:id', KartsController.deleteKart)
+app.get('/api/karts', KartsController.getKarts)
+app.get('/api/karts/:id', KartsController.getKartById)
+app.post('/api/karts', KartsController.createKarts)
+app.put('/api/karts/:id', KartsController.updateKart)
+app.delete('/api/karts/:id', KartsController.deleteKart)
 //--------------------------------------------------
 
 //----------- CRUD Trabajos ------------------------
-app.get('/trabajos', TrabajosController.getTrabajos)
-app.get('/trabajos/:id', TrabajosController.getTrabajoById)
-app.post('/trabajos', TrabajosController.createTrabajo)
-app.put('/trabajos/:id', TrabajosController.updateTrabajo)
-app.delete('/trabajos/:id', TrabajosController.deleteTrabajo)
+app.get('/api/trabajos', TrabajosController.getTrabajos)
+app.get('/api/trabajos/:id', TrabajosController.getTrabajoById)
+app.post('/api/trabajos', TrabajosController.createTrabajo)
+app.put('/api/trabajos/:id', TrabajosController.updateTrabajo)
+app.delete('/api/trabajos/:id', TrabajosController.deleteTrabajo)
 //--------------------------------------------------
 
 //----------- CRUD Reinos -----------------
-app.get('/reinos', ReinosController.getReinos)
-app.get('/reinos/:id', ReinosController.getReinoById)
-app.post('/reinos', ReinosController.createReino)
-app.put('/reinos/:id', ReinosController.updateReino)
-app.delete('/reinos/:id', ReinosController.deleteReino)
+app.get('/api/reinos', ReinosController.getReinos)
+app.get('/api/reinos/:id', ReinosController.getReinoById)
+app.post('/api/reinos', ReinosController.createReino)
+app.put('/api/reinos/:id', ReinosController.updateReino)
+app.delete('/api/reinos/:id', ReinosController.deleteReino)
 //------------------------
 
 //----------- CRUD Defensas -----------------
