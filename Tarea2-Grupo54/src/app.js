@@ -1,6 +1,8 @@
 import express from 'express';
 import UsersController from './controllers/UsersController.js';
 import PersonajesController from './controllers/PersonajesController.js';
+import KartsController from './controllers/KartsController.js';
+import TrabajosController from './controllers/TrabajosController.js';
 import morgan from 'morgan';
 
 const ENV = process.env;
