@@ -21,6 +21,13 @@ app.get('/users/:id/posts', UsersController.usersPosts)
 app.get('/api/personajes', PersonajesController.GetPersonajes)
 app.get('/api/personajes/:id', PersonajesController.GetPersonajesPorId) 
 
+//----------- CRUD Karts -----------------
+app.get('/karts', KartsController.getKarts)
+app.get('/karts/:id', KartsController.getKartById)
+app.post('/karts', KartsController.createKarts)
+app.put('/karts/:id', KartsController.updateKart)
+app.delete('/karts/:id', KartsController.deleteKart)
+//------------------------
 
 //==========================================================//
 app.get('/', (req, res) => {
