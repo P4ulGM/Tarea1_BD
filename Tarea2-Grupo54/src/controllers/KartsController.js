@@ -26,7 +26,7 @@ const getKartById = async (req, res) => {
         }
     })
     if (!kart)
-        return res.status(404).json({error: "User not found"});
+        return res.status(404).json({error: "Kart not found"});
     res.json(kart)
 }
 
@@ -49,7 +49,7 @@ const deleteKart = async (req, res) => {
         }
     })
     if (!deletekart)
-        return res.status(404).json({error: "User not found"});
+        return res.status(404).json({error: "Kart not found"});
     res.json(deletekart)
 }
 
