@@ -7,6 +7,7 @@ import ReinosController from './controllers/ReinosController.js';
 import DefensasController from './controllers/DefensasController.js';
 import Personaje_tiene_trabajoController from './controllers/Personaje_tiene_trabajoController.js';
 import Personaje_habita_reinoContoller from './controllers/Personaje_habita_reinoContoller.js';
+import DiplomaciasController from './controllers/DiplomaciasController.js';
 import morgan from 'morgan';
 
 const ENV = process.env;
@@ -73,6 +74,14 @@ app.get('/api/personaje_habita_reino/:id_reino', Personaje_habita_reinoContoller
 app.post('/api/personaje_habita_reino', Personaje_habita_reinoContoller.createPersonaje_habita_reino)
 app.put('/api/personaje_habita_reino/:id_reino/:id_personaje', Personaje_habita_reinoContoller.updatePersonaje_habita_reino)
 app.delete('/api/personaje_habita_reino/:id_reino/:id_personaje', Personaje_habita_reinoContoller.deletePersonaje_habita_reino)
+//-----------------------------------------------------
+
+//----------- CRUD Diplomacias -----------------
+app.get('/api/diplomacias', DiplomaciasController.getDiplomacias)
+app.get('/api/diplomacias/:id_reino_1', DiplomaciasController.getDiplomaciasById)
+app.post('/api/diplomacias', DiplomaciasController.createDiplomacias)
+app.put('/api/diplomacias/:id_reino_1/:id_reino_2', DiplomaciasController.updateDiplomacias)
+app.delete('/api/diplomacias/:id_reino_1/:id_reino_2', DiplomaciasController.deleteDiplomacias)
 //-----------------------------------------------------
 
 //==========================================================//
