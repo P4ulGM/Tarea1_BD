@@ -6,6 +6,7 @@ import TrabajosController from './controllers/TrabajosController.js';
 import ReinosController from './controllers/ReinosController.js';
 import DefensasController from './controllers/DefensasController.js';
 import Personaje_tiene_trabajoController from './controllers/Personaje_tiene_trabajoController.js';
+import Personaje_habita_reinoContoller from './controllers/Personaje_habita_reinoContoller.js';
 import morgan from 'morgan';
 
 const ENV = process.env;
@@ -64,6 +65,14 @@ app.get('/api/personaje_tiene_trabajo/:id_pesonaje', Personaje_tiene_trabajoCont
 app.post('/api/personaje_tiene_trabajo', Personaje_tiene_trabajoController.createPersonaje_tiene_trabajo)
 app.put('/api/personaje_tiene_trabajo/:id_pesonaje/:id_trabajo', Personaje_tiene_trabajoController.updatePersonaje_tiene_trabajo)
 app.delete('/api/personaje_tiene_trabajo/:id_pesonaje/:id_trabajo', Personaje_tiene_trabajoController.deletePersonaje_tiene_trabajo)
+//-----------------------------------------------------
+
+//----------- CRUD Personaje_habita_reino -----------------
+app.get('/api/personaje_habita_reino', Personaje_habita_reinoContoller.getPersonaje_habita_reino)
+app.get('/api/personaje_habita_reino/:id_reino', Personaje_habita_reinoContoller.getPersonaje_habita_reinoById)
+app.post('/api/personaje_habita_reino', Personaje_habita_reinoContoller.createPersonaje_habita_reino)
+/app.put('/api/personaje_habita_reino/:id_reino/:id_personaje', Personaje_habita_reinoContoller.updatePersonaje_habita_reino)
+app.delete('/api/personaje_habita_reino/:id_reino/:id_personaje', Personaje_habita_reinoContoller.deletePersonaje_habita_reino)
 //-----------------------------------------------------
 
 //==========================================================//
