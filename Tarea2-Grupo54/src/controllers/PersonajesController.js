@@ -54,7 +54,7 @@ const CrearPersonaje = async (req, res) => {
     const fechaNacimientoObj = new Date(Date.parse(fecha_nacimiento));
 
     if(isNaN(fechaNacimientoObj)) {
-        return res.status(400).json({mensaje: "Fecha con formato incorrectoz"})
+        return res.status(400).json({mensaje: "Fecha con formato incorrectos"})
     }
 
     
