@@ -6,7 +6,7 @@ import TrabajosController from './controllers/TrabajosController.js';
 import ReinosController from './controllers/ReinosController.js';
 import DefensasController from './controllers/DefensasController.js';
 import Personaje_tiene_trabajoController from './controllers/Personaje_tiene_trabajoController.js';
-import Personaje_habita_reinoContoller from './controllers/Personaje_habita_reinoContoller.js';
+import Personaje_habita_reinoContoller from './controllers/Personaje_habita_reinoController.js';
 import DiplomaciasController from './controllers/DiplomaciasController.js';
 import morgan from 'morgan';
 
@@ -24,9 +24,9 @@ app.post('/users', UsersController.createUser)
 app.get('/users/:id/posts', UsersController.usersPosts)
 
 // CRUD Personajes
-
 app.get('/api/personajes', PersonajesController.GetPersonajes)
 app.get('/api/personajes/:id', PersonajesController.GetPersonajesPorId) 
+app.post('/api/personajes', PersonajesController.CrearPersonaje)
 
 //----------- CRUD Karts -------------------------
 app.get('/api/karts', KartsController.getKarts)
