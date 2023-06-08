@@ -73,12 +73,61 @@ const CrearPersonaje = async (req, res) => {
     }
 }
 
+const ActualizarPersonaje = async (req,res) => {
+    const { id } = req.params
+    const { nombre, fuerza, fecha_nacimiento, objeto } = req.body
+
+    if(!id) {
+        return res.status(400).json({mensaje: "Se necesita un id para actualizar"})
+    } else if (typeof id !== "number") {
+        return res.status(400).json({mensaje: "id debe de ser un número"})
+    }
+    let fecha_nacimiento_formateada;
+    if (fecha_nacimiento){
+        fecha_nacimiento_formateada = new Date(Date.parse(fecha_nacimiento))
+    }
+    const DatosAcutalizados = {
+        nombre,
+        fuerza,
+        fecha_nacimiento: fecha_nacimiento_formateada,
+        objeto
+    }
+
+  
+
+    try {
+        const personaje = await prisma.personajes.update({
+            where: {id: id},
+            data: DatosAcutalizados
+        });
+        res.status(200).json(personaje);
+    } catch {
+        res.status(500).json({mensaje: "Error al crear personaje"})
+    }
+
+}
+
+const deletePersonaje = async (req ,res) => {
+    const { id } = req.params
+    try {
+        const deletepersonaje = await prisma.personajes.delete({
+            where: {
+                id: Number(id)
+            }
+        })
+        res.status(200).json(deletepersonaje)
+    } catch  {
+        res.status(500).json({mensaje: "Error al borrar personaje"})
+    }
+}
 
 
 const PersonajesController = {
     GetPersonajes,
     GetPersonajesPorId,
-    CrearPersonaje
+    CrearPersonaje,
+    ActualizarPersonaje,
+    deletePersonaje
 }
 
 export default PersonajesController
