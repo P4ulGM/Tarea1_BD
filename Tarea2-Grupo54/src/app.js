@@ -27,7 +27,7 @@ app.get('/users/:id/posts', UsersController.usersPosts)
 app.get('/api/personajes', PersonajesController.GetPersonajes)
 app.get('/api/personajes/:id', PersonajesController.GetPersonajesPorId) 
 app.post('/api/personajes', PersonajesController.CrearPersonaje)
-app.put('/api/personajes', PersonajesController.ActualizarPersonaje)
+app.put('/api/personajes/:id', PersonajesController.ActualizarPersonaje)
 app.delete('/api/personajes/:id', PersonajesController.deletePersonaje)
 
 //----------- CRUD Karts -------------------------

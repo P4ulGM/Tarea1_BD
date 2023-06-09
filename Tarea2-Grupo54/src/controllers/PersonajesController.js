@@ -74,12 +74,14 @@ const CrearPersonaje = async (req, res) => {
 }
 
 const ActualizarPersonaje = async (req,res) => {
-    const { id } = req.params
+    let { id } = req.params
     const { nombre, fuerza, fecha_nacimiento, objeto } = req.body
 
     if(!id) {
         return res.status(400).json({mensaje: "Se necesita un id para actualizar"})
-    } else if (typeof id !== "number") {
+    } else try {
+        id = Number(id)
+    } catch {
         return res.status(400).json({mensaje: "id debe de ser un número"})
     }
     let fecha_nacimiento_formateada;
