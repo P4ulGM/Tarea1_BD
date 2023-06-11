@@ -80,7 +80,7 @@ const updateKart = async (req, res) => {
         });
         res.status(200).json(kart);
     } catch {
-        res.status(500).json({mensaje: "Error al crear kart"})
+        res.status(500).json({mensaje: "Error al actualizar kart"})
     }
 }
 
