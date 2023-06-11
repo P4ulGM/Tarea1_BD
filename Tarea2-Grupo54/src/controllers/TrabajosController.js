@@ -2,13 +2,33 @@ import prisma from '../prismaClient.js'
 
 const createTrabajo = async (req, res) => {
     const { descripcion, sueldo } = req.body
-    const trabajo = await prisma.trabajos.create({
-        data: {
-            descripcion,
-            sueldo
-        }
-    })
-    res.json(trabajo)
+
+    if (!descripcion || !sueldo ) {
+        return res.status(400).json({mensaje: "Descripcion y Sueldo son obligatorias"})
+    }
+
+   if (
+       typeof descripcion !== "string" ||
+       typeof sueldo !== "number") {
+        return res.status(400).json({mensaje: "Error en tipo de Descripcion o Sueldo"})
+    }
+
+
+    if(descripcion.length > 45) {
+        return res.status(400).json({mensaje: "Descripcion muy larga"})
+    }
+
+    try {
+        const trabajo = await prisma.trabajos.create({
+            data: {
+                descripcion,
+                sueldo
+            }
+        })
+        res.json(trabajo)
+    } catch {
+        res.status(500).json({mensaje: "Error al crear trabajo"})
+    }
 }
 
 const getTrabajos = async (req , res) => {
@@ -18,37 +38,59 @@ const getTrabajos = async (req , res) => {
 
 const getTrabajoById = async (req, res) => {
     const { id } = req.params
-    const trabajo = await prisma.trabajos.findUnique({
-        where: {
-            id: Number(id)
-        }
-    })
-    if (!trabajo)
-        return res.status(404).json({error: "job not found"});
-    res.json(trabajo)
+    try{
+        const trabajo = await prisma.trabajos.findUniqueOrThrow({
+            where: {
+                id: Number(id)
+            }
+        })
+        res.json(trabajo) 
+    } catch {
+        res.status(404).json({mensaje: 'trabajo no encontrado'})
+    }
 }
 
 const updateTrabajo = async (req, res) => {
-    const { id } = req.params
-    const updatetrabajo = await prisma.trabajos.update({
-        where: {
-            id: Number(id)
-        },
-        data: req.body
-    })
-    res.json(updatetrabajo)
+    let { id } = req.params
+    const { descripcion, sueldo } = req.body
+
+    if(!id) {
+        return res.status(400).json({mensaje: "Se necesita un id para actualizar"})
+    } else try {
+        id = Number(id)
+    } catch {
+        return res.status(400).json({mensaje: "id debe de ser un número"})
+    }   
+
+    const DatosAcutalizados = {
+        descripcion,
+        sueldo
+    }
+
+    try {
+        const trabajo = await prisma.trabajos.update({
+            where: {id: id},
+            data: DatosAcutalizados
+        });
+        res.status(200).json(trabajo);
+    } catch {
+        res.status(500).json({mensaje: "Error al acutalizar trabajo"})
+    }
+
 }
 
 const deleteTrabajo = async (req, res) => {
     const { id } = req.params
-    const deletetrabajo = await prisma.trabajos.delete({
-        where: {
-            id: Number(id)
-        }
-    })
-    if (!deletetrabajo)
-        return res.status(404).json({error: "job not found"});
-    res.json(deletetrabajo)
+    try {
+        const deletetrabajo = await prisma.trabajos.delete({
+            where: {
+                id: Number(id)
+            }
+        })
+        res.status(200).json(deletetrabajo)
+    } catch  {
+        res.status(500).json({mensaje: "Error al borrar trabajo"})
+    }
 }
 
 
