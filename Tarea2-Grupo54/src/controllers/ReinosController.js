@@ -87,6 +87,7 @@ const updateReino = async (req, res) => {
 
 }
 
+//No deja eliminar reino con id existente
 const deleteReino = async (req, res) => {
     const { id } = req.params
     try {
