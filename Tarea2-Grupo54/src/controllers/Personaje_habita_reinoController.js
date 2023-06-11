@@ -52,7 +52,7 @@ const getPersonaje_habita_reinoById = async (req, res) => {
         })
         res.json(Personaje_habita_reino) 
     } catch {
-        res.status(404).json({mensaje: 'personaje no habita tal reino'})
+        res.status(404).json({mensaje: 'personaje no habita ningun reino'})
     }
 }
 
