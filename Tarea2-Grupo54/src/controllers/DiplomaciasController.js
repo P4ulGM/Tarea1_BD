@@ -14,9 +14,11 @@ const createDiplomacias = async (req, res) => {
         return res.status(400).json({mensaje: "Error en tipo de id_reino_1, id_reino_2 o es_aliado"})
     }
 
-    if(es_aliado !== true || false) {
-        return res.status(400).json({mensaje: "Valor erroneo"})
-    }
+
+    // Si es_aliado es booleano no es necesario
+// if(es_aliado !== true || false) {
+//     return res.status(400).json({mensaje: "Valor erroneo"})
+// }
 
     try {
         const Diplomacias = await prisma.diplomacias.create({
@@ -66,11 +68,13 @@ const updateDiplomacias = async (req, res) => {
 
     if(!id_reino_1 || !id_reino_2) {
         return res.status(400).json({mensaje: "Se necesita un id para actualizar"})
-    } else try {
-        id_reino_1 = Number(id_reino_1);
-        id_reino_2 = Number(id_reino_2)
-    } catch {
-        return res.status(400).json({mensaje: "id debe de ser un número"})
+    } 
+        
+    id_reino_1 = Number(id_reino_1) // Number() no tira error
+    id_reino_2 = Number(id_reino_2)
+
+    if (isNaN(id_reino_1) || isNaN(id_reino_2)) {
+        return res.status(400).json({mensaje: "El id debe de ser un número"})
     }
 
     const DatosActualizados = {
