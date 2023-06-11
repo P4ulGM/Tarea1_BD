@@ -13,12 +13,31 @@ const createDiplomacias = async (req, res) => {
        typeof es_aliado  !== "boolean") {
         return res.status(400).json({mensaje: "Error en tipo de id_reino_1, id_reino_2 o es_aliado"})
     }
-    
+
+
+
+    if(id_reino_1 === id_reino_2) {
+        return res.status(400).json({mensaje: "La diplomacia no puede ser con un solo reino"})
+    }
+
+    // codigo para que siempre sea menor a mayor los ids de los reinos
+
+    let reino_menor
+    let reino_mayor
+    if(id_reino_1 < id_reino_2) {
+        reino_menor = id_reino_1
+        reino_mayor = id_reino_2
+    } else {
+        reino_menor = id_reino_2
+        reino_mayor = id_reino_1
+    }
+
+
     try {
         const Diplomacias = await prisma.diplomacias.create({
             data: {
-                id_reino_1, 
-                id_reino_2, 
+                id_reino_1: reino_menor, 
+                id_reino_2: reino_mayor, 
                 es_aliado
             }
         })
@@ -71,6 +90,16 @@ const updateDiplomacias = async (req, res) => {
         return res.status(400).json({mensaje: "El id debe de ser un número"})
     }
 
+    let reino_menor
+    let reino_mayor
+    if(id_reino_1 < id_reino_2) {
+        reino_menor = id_reino_1
+        reino_mayor = id_reino_2
+    } else {
+        reino_menor = id_reino_2
+        reino_mayor = id_reino_1
+    } 
+
     const DatosActualizados = {
         es_aliado
     }
@@ -89,16 +118,30 @@ const updateDiplomacias = async (req, res) => {
 }
 
 const deleteDiplomacias = async (req, res) => {
-    const { id_reino1, id_reino2 } = req.params
+    let { id_reino1, id_reino2 } = req.params
+
+    id_reino1 = Number(id_reino1)
+    id_reino2 = Number(id_reino2)
+    let reino_menor
+    let reino_mayor
+    if(id_reino1 < id_reino2) {
+        reino_menor = id_reino1
+        reino_mayor = id_reino2
+    } else {
+        reino_menor = id_reino2
+        reino_mayor = id_reino1
+    }
+
+
     try {
         const deletediplomacias = await prisma.diplomacias.deleteMany({
             where: {
                 AND: [
                   {
-                      id_reino_1: Number(id_reino1),
+                      id_reino_1: reino_menor,
                   },
                   {
-                      id_reino_2: Number(id_reino2)
+                      id_reino_2: reino_mayor
                   }
                 ]
               }
