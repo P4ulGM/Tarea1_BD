@@ -79,6 +79,7 @@ const updateTrabajo = async (req, res) => {
 
 }
 
+//No borra trabajo que tenga "trabajadores" 
 const deleteTrabajo = async (req, res) => {
     const { id } = req.params
     try {

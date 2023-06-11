@@ -95,8 +95,6 @@ const ActualizarPersonaje = async (req,res) => {
         objeto
     }
 
-  
-
     try {
         const personaje = await prisma.personajes.update({
             where: {id: id},
@@ -104,11 +102,12 @@ const ActualizarPersonaje = async (req,res) => {
         });
         res.status(200).json(personaje);
     } catch {
-        res.status(500).json({mensaje: "Error al acutalizar personaje"})
+        res.status(500).json({mensaje: "Error al actualizar personaje"})
     }
 
 }
 
+// No deja borrar personajes que tienen asignado un reino
 const deletePersonaje = async (req ,res) => {
     const { id } = req.params
     try {
