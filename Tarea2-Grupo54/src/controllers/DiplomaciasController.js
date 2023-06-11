@@ -13,13 +13,7 @@ const createDiplomacias = async (req, res) => {
        typeof es_aliado  !== "boolean") {
         return res.status(400).json({mensaje: "Error en tipo de id_reino_1, id_reino_2 o es_aliado"})
     }
-
-
-    // Si es_aliado es booleano no es necesario
-// if(es_aliado !== true || false) {
-//     return res.status(400).json({mensaje: "Valor erroneo"})
-// }
-
+    
     try {
         const Diplomacias = await prisma.diplomacias.create({
             data: {
