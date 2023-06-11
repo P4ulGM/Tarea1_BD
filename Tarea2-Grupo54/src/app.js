@@ -80,10 +80,10 @@ app.delete('/api/personaje_habita_reino/:id_reino/:id_personaje', Personaje_habi
 
 //----------- CRUD Diplomacias -----------------
 app.get('/api/diplomacias', DiplomaciasController.getDiplomacias)
-app.get('/api/diplomacias/:id_reino_1', DiplomaciasController.getDiplomaciasById)
+app.get('/api/diplomacias/:id_reino', DiplomaciasController.getDiplomaciasById)
 app.post('/api/diplomacias', DiplomaciasController.createDiplomacias)
 app.put('/api/diplomacias/:id_reino_1/:id_reino_2', DiplomaciasController.updateDiplomacias)
-app.delete('/api/diplomacias/:id_reino_1/:id_reino_2', DiplomaciasController.deleteDiplomacias)
+app.delete('/api/diplomacias/:id_reino1/:id_reino2', DiplomaciasController.deleteDiplomacias)
 //-----------------------------------------------------
 
 //==========================================================//
