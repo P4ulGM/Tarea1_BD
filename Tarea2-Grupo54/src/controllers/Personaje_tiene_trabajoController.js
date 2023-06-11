@@ -36,13 +36,55 @@ const getPersonaje_tiene_trabajo = async (req , res) => {
 }
 
 const getPersonaje_tiene_trabajoById = async (req, res) => {
-    const trabajos_del_personaje = await prisma.personaje_tiene_trabajo.findMany({
-        where: {
-            id_pesonaje: parseInt(req.params.id_pesonaje)
+
+    try {
+        let trabajos_a_personaje
+        if (req.query.tipo === "trabajo") {
+            trabajos_a_personaje = await prisma.personaje_tiene_trabajo.findMany({
+                where: {
+                    id_trabajo: parseInt(req.params.id)
+                }
+            })
+        } else if (req.query.tipo === "personaje") {
+            trabajos_a_personaje = await prisma.personaje_tiene_trabajo.findMany({
+                where: {
+                    id_pesonaje: parseInt(req.params.id)
+                }
+            })
+        } else {
+            return res.status(500).json({mensaje: "Error al buscar 1"}) 
         }
-    })
-    return res.json(trabajos_del_personaje)
+        return res.status(200).json(trabajos_a_personaje)
+    } catch {    
+        return res.status(500).json({mensaje: "Error al buscar 2"}) 
+    }
 }
+
+// const getPersonaje_tiene_trabajoByIdPersonaje = async (req, res) => {
+//     try {
+//         const trabajos_del_personaje = await prisma.personaje_tiene_trabajo.findMany({
+//             where: {
+//                 id_pesonaje: parseInt(req.params.id_pesonaje)
+//             }
+//         })
+//         return res.status(200).json(trabajos_del_personaje)
+//     } catch {
+//         return res.status(500).json({mensaje: "Error al buscar"}) 
+//     }
+// }
+// 
+// const getPersonaje_tiene_trabajoByIdTrabajo = async (req, res) => {
+//     try {
+//         const trabajos_del_personaje = await prisma.personaje_tiene_trabajo.findMany({
+//             where: {
+//                 id_trabajo: parseInt(req.params.id_trabajo)
+//             }
+//         })
+//         return res.status(200).json(trabajos_del_personaje)
+//     } catch {
+//         return res.status(500).json({mensaje: "Error al buscar"}) 
+//     }
+// }
 
 const updatePersonaje_tiene_trabajo = async (req, res) => {
     const {fecha_inicio, fecha_termino } = req.body

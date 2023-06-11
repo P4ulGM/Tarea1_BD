@@ -64,7 +64,7 @@ app.delete('/api/defensas/:id', DefensasController.deleteDefensa)
 
 //----------- CRUD Personaje_tiene_trabajo -----------------
 app.get('/api/personaje_tiene_trabajo', Personaje_tiene_trabajoController.getPersonaje_tiene_trabajo)
-app.get('/api/personaje_tiene_trabajo/:id_pesonaje', Personaje_tiene_trabajoController.getPersonaje_tiene_trabajoById)
+app.get('/api/personaje_tiene_trabajo/:id', Personaje_tiene_trabajoController.getPersonaje_tiene_trabajoById)
 app.post('/api/personaje_tiene_trabajo', Personaje_tiene_trabajoController.createPersonaje_tiene_trabajo)
 app.put('/api/personaje_tiene_trabajo/:id_pesonaje/:id_trabajo', Personaje_tiene_trabajoController.updatePersonaje_tiene_trabajo)
 app.delete('/api/personaje_tiene_trabajo/:id_pesonaje/:id_trabajo', Personaje_tiene_trabajoController.deletePersonaje_tiene_trabajo)

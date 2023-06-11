@@ -1,7 +1,7 @@
 import prisma from '../prismaClient.js'
 
 const createDefensa = async (req, res) => {
-    const { defensa } = req.body
+    const { defensa , reinosids } = req.body
     
 
     if (!defensa) {
@@ -19,11 +19,23 @@ const createDefensa = async (req, res) => {
     }
 
     try {
-        const defense = await prisma.defensas.create({
-            data: {
-                defensa
-            }
-        })
+        let defense
+        if (reinosids) {
+            defense = await prisma.defensas.create({
+                data: {
+                    defensa,
+                    reinos: {
+                        connect: reinosids.map((idreino) => ({ id: idreino}))
+                    },
+                }
+            })
+        } else {
+            defense = await prisma.defensas.create({
+                data: {
+                    defensa
+                }
+            })
+        }
         res.json(defense)
     } catch {
         res.status(500).json({mensaje: "Error al crear la defensa"})
@@ -31,7 +43,9 @@ const createDefensa = async (req, res) => {
 }
 
 const getDefensas = async (req , res) => {
-    const deffensa = await prisma.defensas.findMany()
+    const deffensa = await prisma.defensas.findMany({
+        include: {reinos: true}
+    })
     res.json(deffensa)
 }
 
@@ -41,7 +55,8 @@ const getDefensaById = async (req, res) => {
         const defense = await prisma.defensas.findUniqueOrThrow({
             where: {
                 id: Number(id)
-            }
+            },
+            include: {reinos: true}
         })
         res.json(defense) 
     } catch {
@@ -51,7 +66,7 @@ const getDefensaById = async (req, res) => {
 
 const updateDefensa = async (req, res) => {
     let { id } = req.params
-    const { defensa } = req.body
+    const { defensa , reinosids} = req.body
 
     if(!id) {
         return res.status(400).json({mensaje: "Se necesita un id para actualizar"})
@@ -61,15 +76,27 @@ const updateDefensa = async (req, res) => {
         return res.status(400).json({mensaje: "id debe de ser un número"})
     }
 
-    const DatosActualizados = {
-        defensa
-    }
 
     try {
-        const defense = await prisma.defensas.update({
-            where: {id: id},
-            data: DatosActualizados
-        });
+        let defense
+        if (reinosids) {
+            defense = await prisma.defensas.update({
+                where: {id: id},
+                data: {
+                    defensa,
+                    reinos: {
+                        connect: map.reinosids((idreino) => ({ id: idreino}))
+                    }
+                }
+            })
+        } else {
+            defense = await prisma.defensas.update({
+                where: {id: id},
+                data: {
+                    defensa
+                }
+            });
+        }
         res.status(200).json(defense);
     } catch {
         res.status(500).json({mensaje: "Error al actualizar defensa"})
