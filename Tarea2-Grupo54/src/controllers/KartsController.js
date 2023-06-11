@@ -94,10 +94,8 @@ const deleteKart = async (req, res) => {
         })
         res.json(deletekart)
     } catch {
-        res.status(500).json({mensaje: "Error al borrar kart"})
-    }
-
-    
+        res.status(500).json({mensaje: "Error al borrar kart"});
+    } 
 }
 
 

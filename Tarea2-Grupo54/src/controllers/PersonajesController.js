@@ -35,7 +35,7 @@ const CrearPersonaje = async (req, res) => {
     }
 
 
-    if(nombre.lengh > 45) {
+    if(nombre.length > 45) {
         return res.status(400).json({mensaje: "Nombre muy largo"})
     }
 
@@ -104,7 +104,7 @@ const ActualizarPersonaje = async (req,res) => {
         });
         res.status(200).json(personaje);
     } catch {
-        res.status(500).json({mensaje: "Error al crear personaje"})
+        res.status(500).json({mensaje: "Error al acutalizar personaje"})
     }
 
 }
