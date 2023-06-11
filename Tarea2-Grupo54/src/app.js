@@ -33,7 +33,7 @@ app.delete('/api/personajes/:id', PersonajesController.deletePersonaje)
 //----------- CRUD Karts -------------------------
 app.get('/api/karts', KartsController.getKarts)
 app.get('/api/karts/:id', KartsController.getKartById)
-app.post('/api/karts', KartsController.createKarts)
+app.post('/api/karts', KartsController.createKart)
 app.put('/api/karts/:id', KartsController.updateKart)
 app.delete('/api/karts/:id', KartsController.deleteKart)
 //--------------------------------------------------
