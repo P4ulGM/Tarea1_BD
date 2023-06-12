@@ -122,15 +122,24 @@ const updatePersonaje_tiene_trabajo = async (req, res) => {
 
 
 const deletePersonaje_tiene_trabajo = async (req, res) => {
-    const deletepersonaje_tiene_trabajo = await prisma.personaje_tiene_trabajo.delete({
-        where: {
-            id_pesonaje_id_trabajo: {
-                id_pesonaje: parseInt(req.params.id_pesonaje),
-                id_trabajo: parseInt(req.params.id_trabajo)
-            }
-        }
-    })
-    res.json(deletepersonaje_tiene_trabajo)
+    const { id_trabajo, id_pesonaje } = req.params
+    try {
+        const deletepersonaje_tiene_trabajo = await prisma.personaje_tiene_trabajo.deleteMany({
+            where: {
+                AND: [
+                  {
+                      id_trabajo: Number(id_trabajo),
+                  },
+                  {
+                      id_pesonaje: Number(id_pesonaje)
+                  }
+                ]
+              }
+        })
+        res.status(200).json(deletepersonaje_tiene_trabajo)
+    } catch  {
+        res.status(500).json({mensaje: "Error al borrar personaje del trabajo"})
+    }
 }
 
 const Personaje_tiene_trabajoController = {
