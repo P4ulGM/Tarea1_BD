@@ -8,6 +8,8 @@ import DefensasController from './controllers/DefensasController.js';
 import Personaje_tiene_trabajoController from './controllers/Personaje_tiene_trabajoController.js';
 import Personaje_habita_reinoContoller from './controllers/Personaje_habita_reinoController.js';
 import DiplomaciasController from './controllers/DiplomaciasController.js';
+import Top5MasFuertes from './controllers/Top5MasFuertes.js';
+import PersonajeConMasKarts from './controllers/PersonajeConMasKarts.js';
 import morgan from 'morgan';
 
 const ENV = process.env;
@@ -25,6 +27,10 @@ app.get('/users/:id/posts', UsersController.usersPosts)
 
 //----------- TOP 5 PERSONAJES MAS FUERTES -----------------
 app.get('/api/top5personajesConMasFuerza:', Top5MasFuertes.getMasFuertes)
+//----------------------------------------
+
+//----------- PERSONAJE CON MAS KARTS -----------------
+app.get('/api/personajeConMasKarts:', PersonajeConMasKarts.getPersonajeConMasKarts)
 //----------------------------------------
 
 // CRUD Personajes
