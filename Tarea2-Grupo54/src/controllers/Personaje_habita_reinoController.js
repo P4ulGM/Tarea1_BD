@@ -68,9 +68,18 @@ const updatePersonaje_habita_reino = async (req, res) => {
     } catch {
         return res.status(400).json({mensaje: "id_personaje o id_reino debe de ser un número "})
     }
+    
+    let fecha_registro_formateada;
+    if (fecha_registro){
+        fecha_registro_formateada = Date.parse(fecha_registro)
+        if (isNaN(fecha_registro_formateada)) {
+            return res.status(400).json({mensaje: "Fecha con formato incorrectos"}) 
+        }
+        fecha_registro_formateada = new Date(fecha_registro_formateada)
+    }
 
     const DatosActualizados = {
-        fecha_registro, 
+        fecha_registro:fecha_registro_formateada, 
         es_gobernante
     }
 
