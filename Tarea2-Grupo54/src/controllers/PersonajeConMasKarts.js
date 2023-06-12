@@ -5,9 +5,16 @@ const getPersonajeConMasKarts = async (req, res) => {
     try{
         const PersonajeMasKarts = await prisma.personajes.findMany({
             take:1,
-            orderBy: {
+            orderBy:{
                 karts:{
                     _count: 'desc'
+                }
+            },
+            include: {
+                _count:{
+                    select:{
+                        karts:true
+                    }
                 }
             }
         });
