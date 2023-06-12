@@ -11,6 +11,7 @@ import DiplomaciasController from './controllers/DiplomaciasController.js';
 import Top5MasFuertes from './controllers/Top5MasFuertes.js';
 import PersonajeConMasKarts from './controllers/PersonajeConMasKarts.js';
 import CantidadHabitantes from './controllers/CantidadHabitantes.js';
+import Gobernante from './controllers/Gobernante.js';
 import morgan from 'morgan';
 
 const ENV = process.env;
@@ -38,6 +39,9 @@ app.get('/api/personajeConMasKarts:', PersonajeConMasKarts.getPersonajeConMasKar
 app.get('/api/cantidadHabitantes/:id_reino', CantidadHabitantes.getCantidadHabitantes)
 //----------------------------------------
 
+//----------- GOBERNANTES DEL <ID_REINO> -----------------
+app.get('/api/gobernante/:id_reino', Gobernante.getGobernantesReino)
+//----------------------------------------
 // CRUD Personajes
 app.get('/api/personajes', PersonajesController.GetPersonajes)
 app.get('/api/personajes/:id', PersonajesController.GetPersonajesPorId) 
