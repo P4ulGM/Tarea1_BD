@@ -5,14 +5,14 @@ import prisma from '../prismaClient.js'
 const getMasFuertes = async (req, res) => {
     try{
         const orderedPersonajes = await prisma.personajes.findMany({
-            take:2,
+            take:5,
             orderBy: {
                 fuerza:'desc'
             }
         });
         res.json(orderedPersonajes);
     } catch (err){
-        res.status(404).json({mensaje: 'XD'})
+        res.status(404).json({mensaje: 'Error'})
     }
 }
 
