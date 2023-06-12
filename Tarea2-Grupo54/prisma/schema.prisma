@@ -5,6 +5,7 @@
 //To migrate this file use the command: npx prisma migrate dev
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["orderByRelation"]
 }
 
 datasource db {

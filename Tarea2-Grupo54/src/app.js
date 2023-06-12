@@ -23,6 +23,10 @@ app.get('/users/:id', UsersController.getUserById)
 app.post('/users', UsersController.createUser)
 app.get('/users/:id/posts', UsersController.usersPosts)
 
+//----------- TOP 5 PERSONAJES MAS FUERTES -----------------
+app.get('/api/top5personajesConMasFuerza:', Top5MasFuertes.getMasFuertes)
+//----------------------------------------
+
 // CRUD Personajes
 app.get('/api/personajes', PersonajesController.GetPersonajes)
 app.get('/api/personajes/:id', PersonajesController.GetPersonajesPorId) 
