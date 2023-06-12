@@ -41,7 +41,9 @@ app.get('/api/cantidadHabitantes/:id_reino', CantidadHabitantes.getCantidadHabit
 
 //----------- GOBERNANTES DEL <ID_REINO> -----------------
 app.get('/api/gobernante/:id_reino', Gobernante.getGobernantesReino)
+app.get('/api/gobernante/', Gobernante.getAllGobernantes)
 //----------------------------------------
+
 // CRUD Personajes
 app.get('/api/personajes', PersonajesController.GetPersonajes)
 app.get('/api/personajes/:id', PersonajesController.GetPersonajesPorId) 

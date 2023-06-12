@@ -19,7 +19,24 @@ const getGobernantesReino = async (req, res) => {
     }
 }
 
+const getAllGobernantes = async (req, res) => {
+    try{
+        const allgobernantes = await prisma.personaje_habita_reino.findMany({
+            where:{
+                es_gobernante: true
+            },
+            include: {
+                personaje: true,
+            }
+        });
+        res.json(allgobernantes);
+    } catch (err){
+        res.status(404).json({mensaje: 'Error'})
+    }
+}
+
 const Gobernante = {
-    getGobernantesReino
+    getGobernantesReino,
+    getAllGobernantes
 }
 export default Gobernante
