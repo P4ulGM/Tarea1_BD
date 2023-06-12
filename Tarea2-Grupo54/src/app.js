@@ -82,7 +82,7 @@ app.delete('/api/personaje_tiene_trabajo/:id_pesonaje/:id_trabajo', Personaje_ti
 
 //----------- CRUD Personaje_habita_reino -----------------
 app.get('/api/personaje_habita_reino', Personaje_habita_reinoContoller.getPersonaje_habita_reino)
-app.get('/api/personaje_habita_reino/:id_personaje', Personaje_habita_reinoContoller.getPersonaje_habita_reinoById)
+app.get('/api/personaje_habita_reino/:id', Personaje_habita_reinoContoller.getPersonaje_habita_reinoById)
 app.post('/api/personaje_habita_reino', Personaje_habita_reinoContoller.createPersonaje_habita_reino)
 app.put('/api/personaje_habita_reino/:id_personaje/:id_reino', Personaje_habita_reinoContoller.updatePersonaje_habita_reino)
 app.delete('/api/personaje_habita_reino/:id_personaje/:id_reino', Personaje_habita_reinoContoller.deletePersonaje_habita_reino)
