@@ -105,10 +105,11 @@ const updateDiplomacias = async (req, res) => {
     }
 
     try {
-        const updatediplomacias = await prisma.diplomacias.updateMany({
-            where: {
-                id_reino_1: parseInt(req.params.id_reino_1),
-                id_reino_2: parseInt(req.params.id_reino_2)},
+        const updatediplomacias = await prisma.diplomacias.update({
+            where: {id_reino_1_id_reino_2: {
+                id_reino_1: reino_menor,
+                id_reino_2: reino_mayor
+            }},
                 data: DatosActualizados
         });
         res.status(200).json(updatediplomacias);
@@ -134,17 +135,11 @@ const deleteDiplomacias = async (req, res) => {
 
 
     try {
-        const deletediplomacias = await prisma.diplomacias.deleteMany({
-            where: {
-                AND: [
-                  {
-                      id_reino_1: reino_menor,
-                  },
-                  {
-                      id_reino_2: reino_mayor
-                  }
-                ]
-              }
+        const deletediplomacias = await prisma.diplomacias.delete({
+            where: {id_reino_1_id_reino_2:{
+                id_reino_1: reino_menor,
+                id_reino_2: reino_mayor
+            }}
         })
         res.status(200).json(deletediplomacias)
     } catch  {
