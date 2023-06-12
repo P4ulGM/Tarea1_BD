@@ -10,6 +10,7 @@ import Personaje_habita_reinoContoller from './controllers/Personaje_habita_rein
 import DiplomaciasController from './controllers/DiplomaciasController.js';
 import Top5MasFuertes from './controllers/Top5MasFuertes.js';
 import PersonajeConMasKarts from './controllers/PersonajeConMasKarts.js';
+import CantidadHabitantes from './controllers/CantidadHabitantes.js';
 import morgan from 'morgan';
 
 const ENV = process.env;
@@ -31,6 +32,10 @@ app.get('/api/top5personajesConMasFuerza:', Top5MasFuertes.getMasFuertes)
 
 //----------- PERSONAJE CON MAS KARTS -----------------
 app.get('/api/personajeConMasKarts:', PersonajeConMasKarts.getPersonajeConMasKarts)
+//----------------------------------------
+
+//----------- CANTIDAD HABITANTES DEL <ID_REINO> -----------------
+app.get('/api/cantidadHabitantes/:id_reino', CantidadHabitantes.getCantidadHabitantes)
 //----------------------------------------
 
 // CRUD Personajes
