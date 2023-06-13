@@ -23,16 +23,19 @@ const createPersonaje_tiene_trabajo = async (req, res) => {
     
     
 
-
-    const Personaje_tiene_trabajo = await prisma.personaje_tiene_trabajo.create({
-        data: {
-            id_trabajo,
-            id_pesonaje,
-            fecha_inicio: fecha_inicio_formateada,
-            fecha_termino: fecha_termino_formateada
-        }
-    })
-    res.json(Personaje_tiene_trabajo)
+    try {
+        const Personaje_tiene_trabajo = await prisma.personaje_tiene_trabajo.create({
+            data: {
+                id_trabajo,
+                id_pesonaje,
+                fecha_inicio: fecha_inicio_formateada,
+                fecha_termino: fecha_termino_formateada
+            }
+        })
+        res.status(200).json(Personaje_tiene_trabajo)
+    } catch {
+        res.status(500).json({mensaje: "Error al crear"})
+    }
 }
 
 const getPersonaje_tiene_trabajo = async (req , res) => {
@@ -112,17 +115,21 @@ const updatePersonaje_tiene_trabajo = async (req, res) => {
         fecha_termino_formateada = new Date(fecha_termino_formateada)
     }
 
-    const updatepersonaje_tiene_trabajo = await prisma.personaje_tiene_trabajo.update({
-        where: { id_pesonaje_id_trabajo: {
-            id_pesonaje: parseInt(req.params.id_pesonaje),
-            id_trabajo: parseInt(req.params.id_trabajo)
-        }},
-        data: {
-            fecha_inicio: fecha_inicio_formateada,
-            fecha_termino: fecha_termino_formateada
-        }
-    })
-    res.json(updatepersonaje_tiene_trabajo)
+    try {
+        const updatepersonaje_tiene_trabajo = await prisma.personaje_tiene_trabajo.update({
+            where: { id_pesonaje_id_trabajo: {
+                id_pesonaje: parseInt(req.params.id_pesonaje),
+                id_trabajo: parseInt(req.params.id_trabajo)
+            }},
+            data: {
+                fecha_inicio: fecha_inicio_formateada,
+                fecha_termino: fecha_termino_formateada
+            }
+        })
+        res.status(200).json(updatepersonaje_tiene_trabajo)
+    } catch {
+        res.status(500).json({mensaje: "Error al actualizar"})
+    }
 }
 
 
