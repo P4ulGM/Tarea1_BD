@@ -1,3 +1,6 @@
+
+## Como siempre las intrucciones de prisma
+
 # Install Dependencies
 ```
 npm install
@@ -15,3 +18,4 @@ to run the project type in console
 npm run dev
 ```
 
+# El dump está en la carpeta DUMP_AQUI
