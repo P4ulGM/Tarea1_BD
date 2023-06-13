@@ -11,7 +11,7 @@ import DiplomaciasController from './controllers/DiplomaciasController.js';
 import Top5MasFuertes from './controllers/Top5MasFuertes.js';
 import PersonajeConMasKarts from './controllers/PersonajeConMasKarts.js';
 import CantidadHabitantes from './controllers/CantidadHabitantes.js';
-import Gobernante from './controllers/Gobernante.js';
+import Gobernante from './controllers/Gobernantes.js';
 import morgan from 'morgan';
 
 const ENV = process.env;
@@ -28,11 +28,11 @@ app.post('/users', UsersController.createUser)
 app.get('/users/:id/posts', UsersController.usersPosts)
 
 //----------- TOP 5 PERSONAJES MAS FUERTES -----------------
-app.get('/api/top5personajesConMasFuerza:', Top5MasFuertes.getMasFuertes)
+app.get('/api/top5personajesConMasFuerza', Top5MasFuertes.getMasFuertes)
 //----------------------------------------
 
 //----------- PERSONAJE CON MAS KARTS -----------------
-app.get('/api/personajeConMasKarts:', PersonajeConMasKarts.getPersonajeConMasKarts)
+app.get('/api/personajeConMasKarts', PersonajeConMasKarts.getPersonajeConMasKarts)
 //----------------------------------------
 
 //----------- CANTIDAD HABITANTES DEL <ID_REINO> -----------------

@@ -3,15 +3,13 @@ import prisma from '../prismaClient.js'
 const createKart = async (req, res) => {
     const { modelo, color, velocidad_maxima, id_personaje } = req.body
     
-    if (!modelo || !color || !velocidad_maxima || !id_personaje){
-        return res.status(400).json({mensaje: "Modelo, Color, Velocidad maxima y Id_personaje son obligatorias"})
+    if (!modelo || !color){
+        return res.status(400).json({mensaje: "Modeloy Color son obligatorias"})
     }
 
     if (
         typeof modelo !== "string" ||
-        typeof color !== "string" ||
-        typeof velocidad_maxima !== "number" ||
-        typeof id_personaje  !== "number") {
+        typeof color !== "string") {
         return res.status(400).json({mensaje: "Error en tipo de Modelo, Color, Velocidad maxima o Id_personaje"})
     }
 
@@ -59,7 +57,7 @@ const getKartById = async (req, res) => {
 
 const updateKart = async (req, res) => {
     let { id } = req.params
-    const { modelo, color, velocidad_maxima } = req.body
+    const { modelo, color, velocidad_maxima , id_personaje} = req.body
     if(!id) {
         return res.status(400).json({mensaje: "Se necesita un id para actualizar"})
     } else try {
@@ -70,7 +68,8 @@ const updateKart = async (req, res) => {
     const DatosActalizados = {
         modelo, 
         color, 
-        velocidad_maxima
+        velocidad_maxima,
+        id_personaje
     }
 
     try {

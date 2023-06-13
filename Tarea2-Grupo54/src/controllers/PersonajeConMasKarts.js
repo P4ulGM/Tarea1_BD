@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client'
 import prisma from '../prismaClient.js'
 
 const getPersonajeConMasKarts = async (req, res) => {

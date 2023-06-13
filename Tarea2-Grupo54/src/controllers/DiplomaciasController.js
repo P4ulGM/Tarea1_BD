@@ -3,9 +3,6 @@ import prisma from '../prismaClient.js'
 const createDiplomacias = async (req, res) => {
     const { id_reino_1, id_reino_2, es_aliado } = req.body
 
-    if (!id_reino_1 || !id_reino_2 || !es_aliado) {
-        return res.status(400).json({mensaje: "id_reino_1, id_reino_2 y es_aliado son obligatorias"})
-    }
 
    if (
        typeof id_reino_1 !== "number" ||

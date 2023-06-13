@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client'
 import prisma from '../prismaClient.js'
 
 const getCantidadHabitantes = async (req, res) => {

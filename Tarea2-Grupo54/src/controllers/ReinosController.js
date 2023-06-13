@@ -62,11 +62,8 @@ const updateReino = async (req, res) => {
 
     if(!id) {
         return res.status(400).json({mensaje: "Se necesita un id para actualizar"})
-    } else try {
-        id = Number(id)
-    } catch {
-        return res.status(400).json({mensaje: "id debe de ser un número"})
     }
+    id = Number(id)
 
     const DatosActualizados = {
         nombre,

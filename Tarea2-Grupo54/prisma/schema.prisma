@@ -5,8 +5,6 @@
 //To migrate this file use the command: npx prisma migrate dev
 generator client {
   provider = "prisma-client-js"
-  reviewFeatures = ["selectRelationCount"]
-  previewFeatures = ["orderByRelation"]
 }
 
 datasource db {
@@ -58,7 +56,7 @@ model Personaje_tiene_trabajo {
   id_trabajo Int
   id_pesonaje Int
   fecha_inicio DateTime @db.Date
-  fecha_termino DateTime @db.Date
+  fecha_termino DateTime? @db.Date
   trabajo Trabajos @relation(fields: [id_trabajo], references: [id])
   personaje Personajes @relation(fields: [id_pesonaje], references: [id])
   @@id([id_pesonaje,id_trabajo])

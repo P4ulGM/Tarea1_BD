@@ -9,8 +9,9 @@ const getGobernantesReino = async (req, res) => {
                 id_reino: Number(id_reino),
                 es_gobernante: true
             },
-            include: {
+            select: {
                 personaje: true,
+                reino: true
             }
         });
         res.json(gobernantes);
@@ -25,8 +26,9 @@ const getAllGobernantes = async (req, res) => {
             where:{
                 es_gobernante: true
             },
-            include: {
+            select: {
                 personaje: true,
+                reino: true
             }
         });
         res.json(allgobernantes);
