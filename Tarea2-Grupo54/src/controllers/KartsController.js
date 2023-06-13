@@ -60,11 +60,10 @@ const updateKart = async (req, res) => {
     const { modelo, color, velocidad_maxima , id_personaje} = req.body
     if(!id) {
         return res.status(400).json({mensaje: "Se necesita un id para actualizar"})
-    } else try {
-        id = Number(id)
-    } catch {
-        return res.status(400).json({mensaje: "id debe de ser un número"})
     }
+    
+    id = Number(id)
+
     const DatosActalizados = {
         modelo, 
         color, 
