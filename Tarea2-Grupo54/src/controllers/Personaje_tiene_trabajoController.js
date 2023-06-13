@@ -7,7 +7,6 @@ const createPersonaje_tiene_trabajo = async (req, res) => {
     if (isNaN(fecha_inicio_formateada)) {
         return res.status(400).json({mensaje: "Fecha inicio mal formateada"})
     } 
-    fecha_inicio_formateada = new Date(fecha_inicio_formateada)
     
     let fecha_termino_formateada
     if(fecha_termino) {
@@ -15,10 +14,16 @@ const createPersonaje_tiene_trabajo = async (req, res) => {
         if (isNaN(fecha_termino_formateada)) {
             return res.status(400).json({mensaje: "Fecha termino mal formateada"})
         } 
+        if(fecha_inicio_formateada > fecha_termino_formateada) {
+            return res.status(400).json({mensaje: "Personaje es un viajero del tiempo"})
+        }
         fecha_termino_formateada = new Date(fecha_inicio_formateada)
     }
-
+    fecha_inicio_formateada = new Date(fecha_inicio_formateada)
     
+    
+
+
     const Personaje_tiene_trabajo = await prisma.personaje_tiene_trabajo.create({
         data: {
             id_trabajo,
