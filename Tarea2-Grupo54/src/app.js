@@ -22,10 +22,10 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //endpoints(Routes)
-app.get('/users', UsersController.getUsers)
-app.get('/users/:id', UsersController.getUserById)
-app.post('/users', UsersController.createUser)
-app.get('/users/:id/posts', UsersController.usersPosts)
+// app.get('/users', UsersController.getUsers)
+// app.get('/users/:id', UsersController.getUserById)
+// app.post('/users', UsersController.createUser)
+// app.get('/users/:id/posts', UsersController.usersPosts)
 
 //----------- TOP 5 PERSONAJES MAS FUERTES -----------------
 app.get('/api/top5personajesConMasFuerza', Top5MasFuertes.getMasFuertes)
